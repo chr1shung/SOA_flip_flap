@@ -2,7 +2,6 @@
 module TsvBuddy
   # take_tsv: converts a String with TSV data into @data
   # parameter: tsv - a String in TSV format
-
   TAB = "\t".freeze
   NEWLINE = "\n".freeze
 
@@ -13,16 +12,15 @@ module TsvBuddy
   def take_tsv(tsv)
     rows = tsv.split(NEWLINE).map { |line| line.split(TAB) }
     headers = rows.first
-    data_rows = rows[1..-1]
-    @data = data_rows.map { |row| row_to_table(headers, row) }
+    @data = rows[1..-1].map { |row| row_to_table(headers, row) }
   end
 
   # to_tsv: converts @data into tsv string
   # returns: String in TSV format
   def to_tsv
-    tsv = ""
-    tsv << @data[0].keys.join(TAB) << "\n"
-    @data.each { |item| tsv << item.values.join(TAB) << "\n" }
+    tsv = ''
+    tsv << @data[0].keys.join(TAB) << NEWLINE
+    @data.each { |item| tsv << item.values.join(TAB) << NEWLINE }
     tsv
   end
 end
