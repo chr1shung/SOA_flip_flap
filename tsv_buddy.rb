@@ -18,8 +18,7 @@ module TsvBuddy
   # to_tsv: converts @data into tsv string
   # returns: String in TSV format
   def to_tsv
-    tsv = ''
-    tsv << @data[0].keys.join(TAB) << NEWLINE
+    tsv ||= @data[0].keys.join(TAB) << NEWLINE
     @data.each { |item| tsv << item.values.join(TAB) << NEWLINE }
     tsv
   end
